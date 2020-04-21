@@ -11,8 +11,8 @@ List inputToList(str) {
 }
 
 void start() {
-  final exponents =
-      ask('Please input a comma separated list of your exponents in descending order: ');
+  final exponents = ask(
+      'Please input a comma separated list of your exponents in descending order: ');
   var sortedExponents = List.from(exponents)..sort();
   sortedExponents = sortedExponents.reversed.toList();
   assert(ListEquality().equals(exponents, sortedExponents));
@@ -24,25 +24,25 @@ void start() {
   print('Result $result');
 }
 
-int horner(List exponents, coefficients, x_0){
-  final hornerCoefficients = getHornerCoefficients(exponents, coefficients); //complete list of all coefficients, including zeros
+int horner(List exponents, coefficients, x_0) {
+  final hornerCoefficients = getHornerCoefficients(exponents,
+      coefficients); //complete list of all coefficients, including zeros
   var y = hornerCoefficients[0];
-  for(var i=0; i<hornerCoefficients.length-1; i++){
-    y = y*x_0 + hornerCoefficients[i+1];
+  for (var i = 0; i < hornerCoefficients.length - 1; i++) {
+    y = y * x_0 + hornerCoefficients[i + 1];
   }
   return y;
 }
 
-List getHornerCoefficients(exponents, coefficients){
+List getHornerCoefficients(exponents, coefficients) {
   var hornerCoefficients = [];
   final maxExponent = exponents[0];
   var coefficientCounter = 0;
 
-  for(var i=maxExponent; i>=0; i--){
-    if(!exponents.contains(i)){
+  for (var i = maxExponent; i >= 0; i--) {
+    if (!exponents.contains(i)) {
       hornerCoefficients.add(0);
-    }
-    else{
+    } else {
       hornerCoefficients.add(coefficients[coefficientCounter]);
       coefficientCounter++;
     }
